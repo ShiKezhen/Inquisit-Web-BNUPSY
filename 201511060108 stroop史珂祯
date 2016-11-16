@@ -1,0 +1,188 @@
+//刺激items
+<item red>
+/1= "yellow"
+</item>
+
+<item yellow>
+/1= "white"
+</item>
+
+<item blue>
+/1= "green"
+</item>
+
+<item green>
+/1= "blue"
+</item>
+
+<item white>
+/1= "red"
+</item>
+**********************************************************************************************************************************
+//设计指导语
+<text instruction>
+/items=("请给出我们所呈现的字符的颜色单词首字母，即黄色对应y，蓝色对应b，绿色对应g，白色对应w，红色对应r")
+/hjustify=center
+/txcolor=(255,255,255)
+/txbgcolor=(transparent)
+/fontstyle=("Arial",60ptc)
+/size=(1000,300)
+</text>
+
+//注视点
+<text fixation>
+	/items = ("+")
+	/fontstyle = ("Arial", 40ptc)
+	/txbgcolor = (transparent)
+	/txcolor = (255,255,255)
+</text>
+
+<text bluetxt>
+/items = blue
+/hjustify=center
+/fontstyle = ("Arial",60ptc)
+/txbgcolor = (transparent)
+/txcolor = (0,0,255)
+</text>
+
+<text yellowtxt>
+/items = white
+/hjustify=center
+/fontstyle = ("Arial",60ptc)
+/txbgcolor = (transparent)
+/txcolor = (255,255,0)
+</text>
+
+<text redtxt>
+/items = yellow
+/hjustify=center
+/fontstyle = ("Arial",60ptc)
+/txbgcolor = (transparent)
+/txcolor = (255,0,0)
+</text>
+
+<text greentxt>
+/items = green
+/hjustify=center
+/fontstyle = ("Arial",60ptc)
+/txbgcolor = (transparent)
+/txcolor = (0,255,0)
+</text>
+
+<text whitetxt>
+/items = red
+/hjustify=center
+/fontstyle = ("Arial",60ptc)
+/txbgcolor = (transparent)
+/txcolor = (255,255,255)
+</text>
+
+<text correctmsg>
+	/items = ("√")
+	/fontstyle = ("Arial", 10%)
+	/txbgcolor = (transparent)
+	/txcolor = (0,255,0)
+</text>
+
+<text errormsg>
+	/items = ("×")
+	/fontstyle = ("Arial", 10%)
+	/txbgcolor = (transparent)
+	/txcolor = (255,0,0)
+</text>
+
+//结束语
+<text endtxt>
+	/hjustify = center
+	/items = ("实验结束，请呼叫主试！")
+	/size = (1000,300)
+	/fontstyle = ("宋体",24pt)
+	/txbgcolor = (transparent)
+	/txcolor = (255,255,255)
+</text>
+************************************************************************************************************
+<trial instructiontrial>
+	/validresponse = (anyresponse)
+	/stimulusframes = [1=instruction]
+	/recorddata = false
+</trial>
+
+<trial bluetrial>
+/correctmessage = (correctmsg,500)
+	/errormessage = (errormsg,500)
+	/pretrialpause = 500
+	/validresponse = ("y","r","w","b","g")
+	/correctresponse = ("b")
+	/stimulusframes = [1 = fixation ; 100 = bluetxt]
+</trial>
+
+<trial redtrial>
+/correctmessage = (correctmsg,500)
+	/errormessage = (errormsg,500)
+	/pretrialpause = 500
+	/validresponse = ("y","r","w","b","g")
+	/correctresponse = ("r")
+	/stimulusframes = [1 = fixation; 100 = redtxt]
+</trial>
+
+<trial greentrial>
+/correctmessage = (correctmsg,500)
+	/errormessage = (errormsg,500)
+	/pretrialpause = 500
+	/validresponse = ("y","r","w","b","g")
+	/correctresponse = ("g")
+	/stimulusframes = [1 = fixation; 100 = greentxt]
+</trial>
+
+<trial whitetrial>
+/correctmessage = (correctmsg,500)
+	/errormessage = (errormsg,500)
+	/pretrialpause = 500
+	/validresponse = ("y","r","w","b","g")
+	/correctresponse = ("w")
+	/stimulusframes = [1 = fixation; 100 = whitetxt]
+</trial>
+
+<trial yellowtrial>
+/correctmessage = (correctmsg,500)
+	/errormessage = (errormsg,500)
+	/pretrialpause = 500
+	/validresponse = ("y","r","w","b","g")
+	/correctresponse = ("y")
+	/stimulusframes = [1 = fixation; 100 = yellowtxt]
+</trial>
+***************************************************************************************************************
+//block
+<block instructionblk>
+	/screencolor = (0,0,0)
+	/trials = [1 = instructiontrial]
+</block>
+
+<block colorblk>
+	/screencolor = (0,0,0)
+	/blockfeedback = (meanlatency,correct)
+	/trials = [1-16 = noreplace(bluetrial, redtrial,greentrial,whitetrial,yellowtrial)]
+</block>
+
+<block endblk>
+	/screencolor = (0,0,0)
+	/trials = [1 = endtrial]
+</block>
+
+
+<trial endtrial>
+	/validresponse = (anyresponse)
+	/stimulusframes = [1=endtxt]
+	/recorddata = false
+</trial>
+
+*****************************************************************************************************************************************************************
+
+<expt>
+	/ blocks = [1 = instructionblk; 2 = colorblk; 3 = endblk]
+</expt>
+
+
+
+
+
