@@ -1,0 +1,40 @@
+﻿<picture start>
+	/items = ("C:\Users\Vera\Desktop\instruction\start.jpg")
+	/size = (1920,1080)
+	/halign =  center
+	/valign =  center
+	/
+
+</picture>
+<picture end>
+	/items = ("C:\Users\Vera\Desktop\instruction\end.jpg")
+	/size = (1920,1080)
+	/halign = center
+	/valign = center
+
+</picture>
+<trial start>
+	/validresponse = (anyresponse)
+	/stimulustimes = [1=start]
+	/recorddata = false
+
+</trial>
+<trial end>
+	/validresponse = (anyresponse)
+	/stimulustimes = [1=end]
+	/recorddata = false
+
+</trial>
+<block instructionblk>
+	/screencolor =/color = (0, 0, 255)
+	/trials = [1 = start;2=end]
+
+</block>
+<expt >
+	/ blocks = [1=instructionblk]
+</expt>
+
+
+
+
+  
